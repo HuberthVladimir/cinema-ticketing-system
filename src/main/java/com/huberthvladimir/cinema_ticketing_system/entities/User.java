@@ -32,7 +32,7 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_od"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {}
