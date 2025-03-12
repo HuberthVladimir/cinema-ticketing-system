@@ -1,7 +1,12 @@
 package com.huberthvladimir.cinema_ticketing_system.entities;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,7 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -27,22 +32,20 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @Column(columnDefinition = "varchar(50)")
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tb_users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
 
-    public User(UUID id, String name, String email, String password, Set<Role> roles) {
+    public User(UUID id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.roles = roles;
     }
 
     public UUID getId() {
@@ -69,6 +72,7 @@ public class User {
         this.email = email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -77,11 +81,21 @@ public class User {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public void addRoles(Role role) {
+        roles.add(role);
+    }
+
+    public boolean hasRole(Role role) {
+        return roles.contains(role);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    @Override
+    public String getUsername() {
+        return email;
     }
 }
