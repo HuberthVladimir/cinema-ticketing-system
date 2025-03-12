@@ -12,7 +12,7 @@ import com.huberthvladimir.cinema_ticketing_system.projections.UserDetailsProjec
 public interface UserRepository extends JpaRepository<User, UUID> {
 
     @Query(nativeQuery = true, value = """
-                SELECT TB_USERS.ID,TB_USERS.NAME,TB_USERS.EMAIL, TB_ROLES.AUTHORITY
+                SELECT TB_USERS.EMAIL, TB_USERS.PASSWORD, TB_ROLES.ID, TB_ROLES.AUTHORITY
                 FROM TB_USERS
                 INNER
                 JOIN TB_USERS_ROLES ON TB_USERS_ROLES.USER_ID = TB_USERS.ID INNER
