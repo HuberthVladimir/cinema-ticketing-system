@@ -3,6 +3,8 @@ package com.huberthvladimir.cinema_ticketing_system.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.huberthvladimir.cinema_ticketing_system.dtos.MovieDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,9 +27,10 @@ public class Movie {
 
     private Integer duration;
 
+    @Column(length = 3000)
     private String description;
 
-    private String poster_image;
+    private String posterImage;
 
     private String director;
 
@@ -43,16 +46,27 @@ public class Movie {
 
     public Movie() {}
 
-    public Movie(Long id, String title, Integer duration, String description, String poster_image,
+    public Movie(Long id, String title, Integer duration, String description, String posterImage,
             String director, String cast, Double basePrice) {
         this.id = id;
         this.title = title;
         this.duration = duration;
         this.description = description;
-        this.poster_image = poster_image;
+        this.posterImage = posterImage;
         this.director = director;
         this.cast = cast;
         this.basePrice = basePrice;
+    }
+
+    public Movie(MovieDTO dto) {
+        this.id = dto.getId();
+        this.title = dto.getTitle();
+        this.duration = dto.getDuration();
+        this.description = dto.getDescription();
+        this.posterImage = dto.getPosterImage();
+        this.director = dto.getDirector();
+        this.cast = dto.getCast();
+        this.basePrice = dto.getBasePrice();
     }
 
     public Long getId() {
@@ -87,12 +101,12 @@ public class Movie {
         this.description = description;
     }
 
-    public String getPoster_image() {
-        return poster_image;
+    public String getPosterImage() {
+        return posterImage;
     }
 
-    public void setPoster_image(String poster_image) {
-        this.poster_image = poster_image;
+    public void setPosterImage(String posterImage) {
+        this.posterImage = posterImage;
     }
 
     public String getDirector() {
