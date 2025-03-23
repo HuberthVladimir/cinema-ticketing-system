@@ -119,5 +119,11 @@ public class Movie {
         this.basePrice = basePrice;
     }
 
+    public Set<Genre> getGenres() {
+        return genres;
+    }
 
+    public void setGenres(Genre genre) {
+        genres.add(genre);
+    }
 }
