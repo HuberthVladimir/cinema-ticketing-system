@@ -1,11 +1,13 @@
 package com.huberthvladimir.cinema_ticketing_system.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.huberthvladimir.cinema_ticketing_system.dtos.GenreDTO;
 import com.huberthvladimir.cinema_ticketing_system.entities.Genre;
 import com.huberthvladimir.cinema_ticketing_system.repositories.GenreRepository;
 
+@Service
 public class GenreService {
 
     @Autowired
