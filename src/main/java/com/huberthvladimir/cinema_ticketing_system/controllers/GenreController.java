@@ -15,7 +15,7 @@ import com.huberthvladimir.cinema_ticketing_system.services.GenreService;
 
 @RestController
 @RequestMapping(value = "/genres")
-public class GenreControllers {
+public class GenreController {
 
     GenreService genreService;
 
