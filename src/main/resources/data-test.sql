@@ -7,5 +7,5 @@ INSERT INTO tb_users_roles (user_id, role_id) VALUES ('5921af5a-b8d5-4013-9ef2-b
 INSERT INTO tb_movies (id, title, duration, description, poster_image, director, movie_cast, base_price) VALUES
 (1, 'Interestelar', 169, 'Após ver a Terra consumindo boa parte de suas reservas naturais, um grupo de astronautas recebe a missão de verificar possíveis planetas para receberem a população mundial, possibilitando a continuação da espécie. Cooper (Matthew McConaughey) é chamado para liderar o grupo e aceita a missão sabendo que pode nunca mais ver os filhos. Ao lado de Brand (Anne Hathaway), Jenkins (Marlon Sanders) e Doyle (Wes Bentley), ele seguirá em busca de uma nova casa. Com o passar dos anos, sua filha Murph (Mackenzie Foy e Jessica Chastain) investirá numa própria jornada para também tentar salvar a população do planeta.', 'https://pt.wikipedia.org/wiki/Interstellar#/media/Ficheiro:Interstellar_Filme.png', 'Christopher Nolan', 'Matthew McConaughey, Anne Hathaway', 40.00); 
 
-INSERT INTO tb_genres (id, name) VALUES (1, 'Ficção Científica');
+INSERT INTO tb_genres (name) VALUES ('Ficção Científica');
 INSERT INTO tb_movies_genres (movie_id, genre_id) VALUES (1, 1);
