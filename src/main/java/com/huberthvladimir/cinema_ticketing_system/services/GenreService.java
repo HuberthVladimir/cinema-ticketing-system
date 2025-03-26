@@ -1,5 +1,8 @@
 package com.huberthvladimir.cinema_ticketing_system.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,15 @@ public class GenreService {
 
     @Autowired
     GenreRepository genreRepository;
+
+    public List<GenreDTO> getListGenres() {
+        List<GenreDTO> resultList = new ArrayList<>();
+        List<Genre> genres = genreRepository.findAll();
+        for (Genre genre : genres) {
+            resultList.add(new GenreDTO(genre.getId(), genre.getName()));
+        }
+        return resultList;
+    }
 
     public GenreDTO getGenre(Long id) {
         Genre genre = genreRepository.findById(id)
