@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.huberthvladimir.cinema_ticketing_system.dtos.MovieDTO;
+import com.huberthvladimir.cinema_ticketing_system.projections.MoviesGenresProjection;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -67,6 +68,17 @@ public class Movie {
         this.director = dto.getDirector();
         this.cast = dto.getCast();
         this.basePrice = dto.getBasePrice();
+    }
+
+    public Movie(MoviesGenresProjection projection) {
+        this.id = projection.getId();
+        this.title = projection.getTitle();
+        this.duration = projection.getDuration();
+        this.description = projection.getDescription();
+        this.posterImage = projection.getPosterImage();
+        this.director = projection.getDirector();
+        this.cast = projection.getMovieCast();
+        this.basePrice = projection.getBasePrice();
     }
 
     public Long getId() {
