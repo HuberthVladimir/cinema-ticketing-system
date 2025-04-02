@@ -1,5 +1,7 @@
 package com.huberthvladimir.cinema_ticketing_system.projections;
 
+import java.util.List;
+
 public interface MoviesGenresProjection {
 
     Long getId();
@@ -18,5 +20,5 @@ public interface MoviesGenresProjection {
 
     Double getBasePrice();
 
-    String getGenre();
+    List<String> getGenres();
 }
