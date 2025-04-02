@@ -1,9 +1,9 @@
 package com.huberthvladimir.cinema_ticketing_system.dtos;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import com.huberthvladimir.cinema_ticketing_system.entities.Genre;
 import com.huberthvladimir.cinema_ticketing_system.entities.Movie;
 import com.huberthvladimir.cinema_ticketing_system.projections.MoviesGenresProjection;
 
@@ -42,7 +42,7 @@ public class MovieDTO {
         this.genres = genres;
     }
 
-    public MovieDTO(Movie movies, String genres) {
+    public MovieDTO(Movie movies) {
         this.id = movies.getId();
         this.title = movies.getTitle();
         this.duration = movies.getDuration();
@@ -51,8 +51,8 @@ public class MovieDTO {
         this.director = movies.getDirector();
         this.cast = movies.getCast();
         this.basePrice = movies.getBasePrice();
-        if (genres != null) {
-            this.genres.addAll(Arrays.asList(genres.split(", ")));
+        for (Genre genre : movies.getGenres()) {
+            this.genres.add(genre.getName());
         }
     }
 
@@ -65,8 +65,8 @@ public class MovieDTO {
         this.director = projection.getDirector();
         this.cast = projection.getMovieCast();
         this.basePrice = projection.getBasePrice();
-        if (projection.getGenre() != null) {
-            this.genres.addAll(Arrays.asList(projection.getGenre().split(", ")));
+        for (String genre : projection.getGenres()) {
+            this.genres.add(genre);
         }
 
     }
