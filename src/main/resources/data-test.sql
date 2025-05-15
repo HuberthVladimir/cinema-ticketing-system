@@ -9,3 +9,11 @@ INSERT INTO tb_movies ( title, duration, description, poster_image, director, mo
 
 INSERT INTO tb_genres (name) VALUES ('Ficção Científica');
 INSERT INTO tb_movies_genres (movie_id, genre_id) VALUES (1, 1);
+
+
+INSERT INTO tb_theater_rooms (NAME, exibithion_type, capacity) VALUES ('Sala 01', '3D', 0);
+INSERT INTO tb_theater_rooms (NAME, exibithion_type, capacity) VALUES ('Sala 02', 'IMAX', 0);
+INSERT INTO tb_seats (is_special_seat, seat_number, seat_row, theater_room_id) VALUES (TRUE, 1, 'A', 1);
+INSERT INTO tb_seats (is_special_seat, seat_number, seat_row, theater_room_id) VALUES (FALSE, 2, 'A', 1);
+INSERT INTO tb_seats (is_special_seat, seat_number, seat_row, theater_room_id) VALUES (TRUE, 3, 'A', 1);
+INSERT INTO tb_seats (is_special_seat, seat_number, seat_row, theater_room_id) VALUES (TRUE, 1, 'A', 2);
