@@ -1,6 +1,8 @@
 package com.huberthvladimir.cinema_ticketing_system.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.huberthvladimir.cinema_ticketing_system.dtos.MovieDTO;
@@ -14,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -44,6 +47,9 @@ public class Movie {
     @JoinTable(name = "tb_movies_genres", joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres = new HashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private List<Session> session = new ArrayList<>();
 
     public Movie() {}
 
@@ -151,5 +157,13 @@ public class Movie {
 
     public void setGenres(Genre genre) {
         genres.add(genre);
+    }
+
+    public List<Session> getSessions() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session.add(session);
     }
 }
