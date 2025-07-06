@@ -3,7 +3,7 @@ package com.huberthvladimir.cinema_ticketing_system.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.huberthvladimir.cinema_ticketing_system.dtos.TheaterRoom.TheatherRoomRequestDTO;
+import com.huberthvladimir.cinema_ticketing_system.dtos.TheaterRoom.TheaterRoomRequestDTO;
 import com.huberthvladimir.cinema_ticketing_system.projections.GetAllSeatsProjection;
 
 import jakarta.persistence.Entity;
@@ -25,7 +25,7 @@ public class TheaterRoom {
 
     private int capacity;
 
-    private String exibithionType;
+    private String exhibitionType;
 
     @OneToMany(mappedBy = "theaterRoom")
     private List<Seat> seats = new ArrayList<>();
@@ -35,23 +35,23 @@ public class TheaterRoom {
 
     public TheaterRoom() {}
 
-    public TheaterRoom(Long id, int capacity, String name, String exibithionType) {
+    public TheaterRoom(Long id, int capacity, String name, String exhibitionType) {
         this.id = id;
         this.capacity = capacity;
         this.name = name;
-        this.exibithionType = exibithionType;
+        this.exhibitionType = exhibitionType;
     }
 
-    public TheaterRoom(TheatherRoomRequestDTO requestDTO) {
+    public TheaterRoom(TheaterRoomRequestDTO requestDTO) {
         this.name = requestDTO.getName();
-        this.exibithionType = requestDTO.getExibithionType();
+        this.exhibitionType = requestDTO.getExhibitionType();
     }
 
     public TheaterRoom(GetAllSeatsProjection projection) {
         this.id = projection.getTheaterRoomId();
         this.name = projection.getTheaterRoomName();
         this.capacity = projection.getCapacity();
-        this.exibithionType = projection.getExibithionType();
+        this.exhibitionType = projection.getExhibitionType();
     }
 
     public Long getId() {
@@ -78,12 +78,12 @@ public class TheaterRoom {
         this.name = name;
     }
 
-    public String getExibithionType() {
-        return exibithionType;
+    public String getExhibitionType() {
+        return exhibitionType;
     }
 
-    public void setExibithionType(String exibithionType) {
-        this.exibithionType = exibithionType;
+    public void setExhibitionType(String exhibitionType) {
+        this.exhibitionType = exhibitionType;
     }
 
     public List<Seat> getSeats() {

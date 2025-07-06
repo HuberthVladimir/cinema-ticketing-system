@@ -45,7 +45,7 @@ public class MovieController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<MovieDTO> createMovie(@PathVariable Long id, @RequestBody MovieDTO dto) {
+    public ResponseEntity<MovieDTO> updateMovie(@PathVariable Long id, @RequestBody MovieDTO dto) {
         return ResponseEntity.ok(movieService.updateMovie(id, dto));
     }
 

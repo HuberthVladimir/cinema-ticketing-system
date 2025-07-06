@@ -16,5 +16,5 @@ public interface GetAllSeatsProjection {
 
     int getCapacity();
 
-    String getExibithionType();
+    String getExhibitionType();
 }

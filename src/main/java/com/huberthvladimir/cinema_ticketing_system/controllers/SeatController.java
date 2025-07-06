@@ -33,8 +33,8 @@ public class SeatController {
         return seatService.getSeatsById(id);
     }
 
-    @GetMapping("/{id}")
-    public List<SeatResponseDTO> getSeatByTheatherRoomId(@PathVariable Long id) {
+    @GetMapping("/theater-room/{theaterRoomId}")
+    public List<SeatResponseDTO> getSeatByTheaterRoomId(@PathVariable Long id) {
         return seatService.getSeatsByTheaterRoomId(id);
     }
 
