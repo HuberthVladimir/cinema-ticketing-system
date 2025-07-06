@@ -23,13 +23,16 @@ public class SeatService {
     @Autowired
     TheaterRoomRepository theaterRoomRepository;
 
+    @Autowired
+    TheaterRoomService theaterRoomService;
+
     public List<SeatResponseDTO> getAllSeats() {
         List<SeatResponseDTO> seatList = new ArrayList<>();
         List<GetAllSeatsProjection> seatListProjection = seatRepository.searchAllSeats();
 
         for (GetAllSeatsProjection seat : seatListProjection) {
-            SeatResponseDTO reponseDTO = new SeatResponseDTO(seat);
-            seatList.add(reponseDTO);
+            SeatResponseDTO responseDTO = new SeatResponseDTO(seat);
+            seatList.add(responseDTO);
         }
         return seatList;
     }
@@ -52,8 +55,8 @@ public class SeatService {
         }
 
         for (GetAllSeatsProjection seat : seatListProjection) {
-            SeatResponseDTO reponseDTO = new SeatResponseDTO(seat);
-            seatList.add(reponseDTO);
+            SeatResponseDTO responseDTO = new SeatResponseDTO(seat);
+            seatList.add(responseDTO);
         }
 
         return seatList;
@@ -74,6 +77,8 @@ public class SeatService {
         }
 
         seat = seatRepository.save(seat);
+        theaterRoomService.updateCapacity(theaterRoom);
+
         return new SeatResponseDTO(seat, theaterRoom);
     }
 
@@ -97,6 +102,7 @@ public class SeatService {
         existingSeat.seatTheaterRoom(theaterRoom);
 
         Seat updatedSeat = seatRepository.save(existingSeat);
+        theaterRoomService.updateCapacity(theaterRoom);
 
         return new SeatResponseDTO(updatedSeat, theaterRoom);
     }
@@ -105,6 +111,7 @@ public class SeatService {
         Seat seat = seatRepository.findById(seatId)
                 .orElseThrow(() -> new RuntimeException("Seat not found"));
 
+        theaterRoomService.updateCapacity(seat.getTheaterRoom());
         seatRepository.delete(seat);
     }
 }

@@ -14,11 +14,25 @@ public class TheaterRoomService {
     @Autowired
     TheaterRoomRepository theaterRoomRepository;
 
+    @Autowired
+    SeatService seatService;
+
     // public TheaterRoomResponseDTO getAllTheaterRoom() {
     // TheaterRoom theaterRoom = theaterRoomRepository.
 
     // return new TheaterRoomResponseDTO(theaterRoom);
     // }
+
+    public void updateCapacity(TheaterRoom theaterRoom) {
+        var seats = seatService.getSeatsByTheaterRoomId(theaterRoom.getId());
+        int amountSeats = seats.size();
+
+        if (theaterRoom.getCapacity() != amountSeats) {
+            theaterRoom.setCapacity(amountSeats);
+            theaterRoomRepository.save(theaterRoom);
+        }
+
+    }
 
     public TheaterRoomResponseDTO getTheaterRoom(Long id) {
         TheaterRoom theaterRoom = theaterRoomRepository.findById(id)
